@@ -4,13 +4,16 @@ const ambientSound = document.getElementById("ambientSound");
 const failSound = document.getElementById("failSound");
 
 const resting = new Image();
+const collision = new Image();
 const back_lift = new Image();
 const front_lift = new Image();
 const cactus = new Image();
 const cloudImg = new Image();
+
 cloudImg.src = "image/cloud.png";
 cactus.src = "image/obstacle.png";
 resting.src = "image/resting.png";
+collision.src = "image/collision.png";
 back_lift.src = "image/back_lift.png";
 front_lift.src = "image/front_lift.png";
 
@@ -73,7 +76,7 @@ function updateObstacles() {
   ) {
     let obstacle = {
       x: canvas.width,
-      y: 160,
+      y: randomIntFromRange(140, 180),
       width: randomIntFromRange(20, 40),
       height: randomIntFromRange(20, 40),
     };
@@ -115,6 +118,7 @@ function detectCollision() {
       dino.y + dino.height > obstacle.y
     ) {
       // Colisão detectada
+      dino.image = collision;
       ambientSound.pause();
       failSound.play();
       alert("Game Over! Score: " + score);
@@ -139,9 +143,6 @@ function updateDino() {
     dino.grounded = true;
   }
 
-  //   if (dino.dy) {
-  //     dino.image = resting;
-  //   } else
   if (iteration == 10) {
     if (dino.image == front_lift) {
       dino.image = back_lift;
