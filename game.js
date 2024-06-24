@@ -18,8 +18,8 @@ front_lift.src = "image/front_lift.png";
 let dino = {
   x: 50,
   y: 150,
-  width: 20,
-  height: 40,
+  width: 40,
+  height: 60,
   dy: 0,
   jumpStrength: 10,
   gravity: 0.5,
@@ -93,9 +93,9 @@ function updateClouds() {
   if (clouds.length === 0 || clouds[clouds.length - 1].x < canvas.width - 200) {
     let cloud = {
       x: canvas.width,
-      y: 50,
-      width: randomIntFromRange(20, 40),
-      height: randomIntFromRange(20, 40),
+      y: randomIntFromRange(40, 80),
+      width: 48,
+      height: 20,
     };
     clouds.push(cloud);
   }
@@ -182,6 +182,9 @@ function update() {
   updateObstacles();
   updateClouds();
   detectCollision();
+  ctx.fillStyle = "#505050";
+  ctx.font = "15px 'Press Start 2P'";
+  ctx.fillText(score, 730, 80);
 }
 
 // Função principal do jogo
